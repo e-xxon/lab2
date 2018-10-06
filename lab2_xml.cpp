@@ -20,7 +20,9 @@ public:
     CParser(Glib::ustring& first_currency, Glib::ustring& second_currency)
     {
         v_district.district = first_currency;
+        v_district.amount = "-1";
         v_address.address = second_currency;
+        v_district.amount = "-1";
         create.amount = first_currency;
         create.address = second_currency;
     }
