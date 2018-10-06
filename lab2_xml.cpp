@@ -27,7 +27,7 @@ public:
         create.address = second_currency;
     }
 
-    virtual ~CParser()
+    ~CParser()
     {
     }
 
