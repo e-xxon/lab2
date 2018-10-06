@@ -46,14 +46,6 @@ public:
 
 
 protected:
-    virtual void on_start_document() override
-    {
-    }
-
-    virtual void on_end_document() override
-    {
-    }
-
     virtual void on_start_element(
         const Glib::ustring& name, const AttributeList& properties) override
     {
