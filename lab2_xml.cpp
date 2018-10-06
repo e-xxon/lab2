@@ -43,7 +43,7 @@ public:
         std::cout << "Address " << v_address.address << "   "
                   << "Amount of surveillance cameras = " << amount_address << std::endl;
     }
-}
+};
 
 
 int main(int argc, char** argv)
