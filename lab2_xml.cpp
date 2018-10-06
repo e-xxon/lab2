@@ -43,6 +43,84 @@ public:
         std::cout << "Address " << v_address.address << "   "
                   << "Amount of surveillance cameras = " << amount_address << std::endl;
     }
+    
+protected:
+    virtual void on_start_element(
+        const Glib::ustring& name, const AttributeList& properties) override
+    {
+        tags.push(name);
+
+        if (name == "addresses_camera_installation")
+        {
+            current_info.district.clear();
+            current_info.address.clear();
+            current_info.amount.clear();
+        }
+    }
+
+    virtual void on_end_element(const Glib::ustring& name) override
+    {
+        last = current_info;
+        tags.pop();
+        if ((name == "dataset") && (create.amount == create.address))
+        {
+            k += std::stod(last.amount.substr(0, current_info.amount.length()));
+            std::cout << "District " << last.district << "  "
+                      << "Amount of surveillance cameras = " << k << std::endl;
+        }
+        if (name == "addresses_camera_installation")
+        {
+            if (create.amount == create.address)
+            {
+                if (v_district.district == "-1")
+                {
+                    v_district = current_info;
+                }
+                else if (current_info.district == v_district.district)
+                {
+
+                    k += std::stod(v_district.amount.substr(0, current_info.amount.length()));
+                    v_district = current_info;
+                }
+
+                else
+                {
+                    k += std::stod(v_district.amount.substr(0, current_info.amount.length()));
+                    create.district = v_district.district;
+                    v_district = current_info;
+
+                    std::cout << "District " << create.district << "  "
+                              << "Amount of surveillance cameras = " << k << std::endl;
+                    k = 0;
+                }
+            }
+            else if (current_info.district == v_district.district)
+            {
+                v_district = current_info;
+                k += std::stod(current_info.amount.substr(0, current_info.amount.length()));
+            }
+            else if (current_info.address == v_address.address)
+            {
+                v_address = current_info;
+            }
+        }
+    }
+
+    virtual void on_characters(const Glib::ustring& chars) override
+    {
+        if (tags.top() == "district")
+        {
+            current_info.district = chars;
+        }
+        else if (tags.top() == "address")
+        {
+            current_info.address = chars;
+        }
+        else if (tags.top() == "amount")
+        {
+            current_info.amount = chars;
+        }
+    }
 };
 
 
