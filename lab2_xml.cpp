@@ -34,11 +34,11 @@ public:
         std::cout << "District " <<  v_district.district << "   " << "Amount of surveillance cameras = " << k << std::endl;
     }
 
-	void print_result_Address()
-	{	
+     void print_result_Address()
+     {	
         int amount_address = std::stod(v_address.amount.substr(0, v_address.amount.length()));
-			std::cout <<  "Address " << v_address.address << "   " << "Amount of surveillance cameras = " << amount_address << std::endl;
-	}
+	std::cout <<  "Address " << v_address.address << "   " << "Amount of surveillance cameras = " << amount_address << std::endl;
+      }
 
 
 
