@@ -127,26 +127,6 @@ protected:
 
 
     }
-
-    virtual void on_comment(const Glib::ustring& text) override
-    {
-
-    }
-
-    virtual void on_warning(const Glib::ustring& text) override
-    {
-
-    }
-
-    virtual void on_error(const Glib::ustring& text) override
-    {
-
-    }
-
-    virtual void on_fatal_error(const Glib::ustring& text) override
-    {
-
-    }
 };
 
 int main(int argc, char** argv)
